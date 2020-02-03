@@ -4,6 +4,11 @@
 
 <script>
 export default {
+  validate(data) {
+    // check if the url params are numbers
+    return /^\d+$/.test(data.params.id)
+ 
+  }
 
 }
 </script>

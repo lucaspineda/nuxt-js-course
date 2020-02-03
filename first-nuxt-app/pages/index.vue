@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <h1>
-      Hello, I'm a first Nuxt App!
-    </h1>
+    <h1>nuxt link:</h1>
+    <nuxt-link to="/users">Users</nuxt-link>
+    <hr>
+    <h1>SPA link:</h1>
+    <a href="/users">Users</a>
   </div>
 </template>
 
@@ -24,6 +26,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-direction: column;
 }
 
 .title {
