@@ -1,23 +1,13 @@
 <template>
-  <div>
-    <h1>this is the user page</h1>
-    <input type="text" v-model="userID">
-    <button @click="findUser">Find user</button>
-  </div>
+<div>
+	<h1>click in the button to go to page</h1>
+</div>
+
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      userID: ''
-    }
-  },
-  methods: {
-    findUser(){
-      this.$router.push('/users/' + this.userID)
-    }
-  },
+
 
 }
 </script>
