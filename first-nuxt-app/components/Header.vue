@@ -24,7 +24,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: lightgray
+        background-color: lightgray;
     }
 
     .nav-items {
@@ -35,5 +35,9 @@ export default {
         justify-content: space-around;
         align-items: center;
         width: 80%;
+    }
+
+    .nav-items a {
+        text-decoration: none
     }
 </style>
