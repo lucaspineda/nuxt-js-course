@@ -38,13 +38,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .intro {
   height: 300px;
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url('~assets/images/coffe.jpg');
   background-position: center;
   background-size: cover;
 }
