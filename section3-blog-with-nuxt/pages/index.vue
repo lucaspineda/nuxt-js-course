@@ -4,16 +4,24 @@
       <h1>Get the latest tech news!</h1>
     </section>
     <section class="featured-posts">
-      <nuxt-link class="post-preview" :to="'/posts/' + 1">
-        <article>
-          <div class="post-thumbnail"></div>
-          <div class="post-content">
-            <h1>Post Title</h1>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <PostPreview />
+      <PostPreview 
+      id="1"
+      thumbnail="https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg"
+      title="Hello There!!!"
+      previewText="Text of first post"
+      />
+      <PostPreview 
+      id="2"
+      thumbnail="https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg"
+      title="Hello There!!!"
+      previewText="Text of first post"
+      />
+      <PostPreview 
+      id="3"
+      thumbnail="https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg"
+      title="Hello There!!!"
+      previewText="Text of first post"
+      />
     </section>
   </div>
 
