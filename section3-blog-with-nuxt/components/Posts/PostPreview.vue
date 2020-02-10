@@ -62,7 +62,6 @@ a {
   height: 200px;
   background-position: center;
   background-size: cover;
-  background-image: url('https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg')
 }
 
 .post-content {
