@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 
 </template>
@@ -15,7 +15,32 @@ import PostList from '@/components/Posts/PostList'
 export default {
   components: {
     PostList
-  }
+  },
+
+  data() {
+    return {
+      loadedPosts: [
+      {
+        id: '1',
+        title: 'First Post',
+        previewText: 'This is our first post!',
+        thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
+      },
+      {
+        id: '2',
+        title: 'second Post',
+        previewText: 'This is our second post!',
+        thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
+      },
+      {
+        id: '3',
+        title: 'third Post',
+        previewText: 'This is our third post!',
+        thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
+      },
+      ]
+    }
+  },
 }
 </script>
 
