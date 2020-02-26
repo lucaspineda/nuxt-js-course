@@ -41,7 +41,6 @@ export default {
         ]
       })
     }, 2000)
-    
   },
 
   data() {
