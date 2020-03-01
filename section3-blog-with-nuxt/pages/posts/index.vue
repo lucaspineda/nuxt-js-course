@@ -11,43 +11,10 @@ export default {
   components: {
     PostList
   },
-
-  asyncData(context) {
-    return new Promise((resolve,reject) => {
-      setTimeout(() => {
-        resolve({ loadedPosts:
-          [{
-            id: '1',
-            title: 'First Post',
-            previewText: 'This is our first post!',
-            thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
-          },
-          {
-            id: '2',
-            title: 'second Post',
-            previewText: 'This is our second post!',
-            thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
-          },
-          {
-            id: '3',
-            title: 'third Post',
-            previewText: 'This is our third post!',
-            thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
-          },
-          ]
-        })
-      }, 2000)
-      // reject(new Error())
-    })
-    .then(data => {
-      return data
-    })
-    .catch(e => {
-      context.error(e)
-    })
-  },
-  created() {
-    this.$store.dispatch('setPosts', this.loadedPosts)
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
   },
 }
 </script>
