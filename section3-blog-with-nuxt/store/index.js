@@ -35,7 +35,7 @@ const createStore = () => {
                             }]
                         )
                         resolve();
-                    }, 2000)
+                    }, 5000)
                 })
             },
             setPosts(vuexContext, posts) {
