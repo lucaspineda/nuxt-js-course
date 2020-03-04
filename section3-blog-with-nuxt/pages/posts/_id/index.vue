@@ -3,7 +3,7 @@
       <section class="post">
           <h1 class="post-title"> {{ loadedPost.title}}</h1>
           <div class="post-details">
-              <div class="post-detail">Last updated on {{ loadedPost.updateDate}}</div>
+              <div class="post-detail">Last updated on {{ loadedPost.updatedDate}}</div>
               <div class="post-detail">Writen by {{ loadedPost.author}}</div>
           </div>
           <p class="post-content">{{ loadedPost.content}}</p>
@@ -15,21 +15,17 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-          id: '1',
-          title: 'First Post (ID: ' + context.route.params.id +')',
-          previewText: 'This is our first post!',
-          author: 'lucas pineda',
-          updateDate: new Date(),
-          content: 'this is any content',
-          thumbnail: 'https://www.ubuntupit.com/wp-content/uploads/2017/11/Best-Linux-Code-Editor-Top-10-Reviewed-and-Compared.jpeg'
+  asyncData(context) {
+    return axios.get('https://nuxt-blog-9edce.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
         }
       })
-    },1000)
+      .catch(error => context.error(e))
     
   },
 
