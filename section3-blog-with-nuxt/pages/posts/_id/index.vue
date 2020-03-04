@@ -26,9 +26,7 @@ export default {
         }
       })
       .catch(error => context.error(e))
-    
   },
-
 }
 </script>
 

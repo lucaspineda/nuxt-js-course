@@ -8,7 +8,7 @@
         <p>{{ previewText }}</p>
         </div>
     </article>
-</nuxt-link>
+  </nuxt-link>
 </template>
 
 <script>
