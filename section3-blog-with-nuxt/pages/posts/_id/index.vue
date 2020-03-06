@@ -27,6 +27,9 @@ export default {
       })
       .catch(error => context.error(e))
   },
+  head: {
+    title: 'a blog post'
+  }
 }
 </script>
 
