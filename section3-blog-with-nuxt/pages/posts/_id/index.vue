@@ -19,13 +19,13 @@ import axios from 'axios'
 
 export default {
   asyncData(context) {
-    return axios.get(process.env.BASE_URL + '/posts/' + context.params.id + '.json')
+    return axios.get(process.env.baseUrl + '/posts/' + context.params.id + '.json')
       .then(res => {
         return {
           loadedPost: res.data
         }
       })
-      .catch(error => context.error(e))
+      .catch(error => context.error(error))
   },
   head: {
     title: 'a blog post'

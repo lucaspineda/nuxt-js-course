@@ -16,7 +16,7 @@ export default {
         AdminPostForm
     },
     asyncData(context) {
-        return axios.get(process.env.BASE_URL + '/posts/' + 
+        return axios.get(process.env.baseUrl + '/posts/' + 
         context.params.postId + 
         '.json')
             .then(res => {
@@ -24,7 +24,7 @@ export default {
                 loadedPost: {...res.data, id: context.params.postId}
             }
         })
-      .catch(error => context.error(e))
+      .catch(error => context.error(error))
     },
 
     methods: {
