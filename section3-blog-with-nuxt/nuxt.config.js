@@ -53,5 +53,8 @@ export default {
   },
   env: {
     baseUrl: process.env.BASE_URL || 'https://nuxt-blog-9edce.firebaseio.com'
+  },
+  router: {
+    linkActiveClass: 'active'
   }
 }
