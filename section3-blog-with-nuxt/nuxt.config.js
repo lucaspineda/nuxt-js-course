@@ -55,7 +55,8 @@ export default {
     }
   },
   env: {
-    baseUrl: process.env.baseUrl || 'https://nuxt-blog-9edce.firebaseio.com'
+    baseUrl: process.env.baseUrl || 'https://nuxt-blog-9edce.firebaseio.com',
+    firebaseAPIKey: 'AIzaSyATOC1fuxI4AoII0eYi92Eh3cgx5hzHhJc'
   },
   router: {
     linkActiveClass: 'active'
