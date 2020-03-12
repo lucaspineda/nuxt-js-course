@@ -53,7 +53,7 @@ const createStore = () => {
             editPost(vueContext, editedPost) {
                 return axios.put(process.env.baseUrl +'/posts/' + 
                     editedPost.id + 
-                    '.json', editedPost)
+                    '.json?auth=' + vueContext.state.token, editedPost)
                     .then(res => {
                         vueContext.commit('editPost', editedPost)
                     })
@@ -74,9 +74,9 @@ const createStore = () => {
                     password: authData.password,
                     returnSecureToken: true
                 })
-                .then( result => {
+                .then(result => {
                     console.log(result)
-                    vueContext.commit('setToken', result.idToken)
+                    vueContext.commit('setToken', result.data.idToken)
                 })
                 .catch(error => console.log(error))
             }
