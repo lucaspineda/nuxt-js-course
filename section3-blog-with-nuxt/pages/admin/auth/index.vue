@@ -31,16 +31,19 @@ export default {
   },
   methods: {
     onSubmit() {
-      axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + 
-      process.env.firebaseAPIKey, {
-        email: this.email,
-        password: this.password,
-        returnSecureToken: true
-      })
-      .then( result => {
-        console.log(result)
-      })
-      .catch(error => console.log(error))
+      let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.firebaseAPIKey
+      if(!this.isLogin) {
+        let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.firebaseAPIKey
+      }
+        axios.post(authUrl, {
+          email: this.email,
+          password: this.password,
+          returnSecureToken: true
+        })
+        .then( result => {
+          console.log(result)
+        })
+        .catch(error => console.log(error))
     }
   },
 }
