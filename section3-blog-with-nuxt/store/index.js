@@ -5,7 +5,8 @@ import axios from 'axios'
 const createStore = () => {
     return new Vuex.Store({
         state: {
-            loadedPosts: []
+            loadedPosts: [],
+            token: null
         },
         mutations: {
             setPosts(state, posts) {
@@ -19,6 +20,9 @@ const createStore = () => {
                     return post.id === editedPost.id
                 })
                 state.loadedPosts[postIndex] = editedPost
+            },
+            setToken(state, token) {
+                state.token = token
             }
         },
         actions: {
@@ -33,6 +37,7 @@ const createStore = () => {
                 })
                 .catch(error => context.error(error))
             },
+
             addPost(vueContext, post) {
                 const createdPost = {
                     ...post,
@@ -44,6 +49,7 @@ const createStore = () => {
                     })
                     .catch(error => console.log(error))
             },
+
             editPost(vueContext, editedPost) {
                 return axios.put(process.env.baseUrl +'/posts/' + 
                     editedPost.id + 
@@ -56,6 +62,23 @@ const createStore = () => {
             },
             setPosts(vuexContext, posts) {
                 vuexContext.commit('setPosts', posts)
+            },
+            
+            authenticateUser(vueContext, authData){
+                let authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.firebaseAPIKey
+                if(!authData.isLogin) {
+                    authUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.firebaseAPIKey
+                }
+                return axios.post(authUrl, {
+                    email: authData.email,
+                    password: authData.password,
+                    returnSecureToken: true
+                })
+                .then( result => {
+                    console.log(result)
+                    vueContext.commit('setToken', result.idToken)
+                })
+                .catch(error => console.log(error))
             }
         },
         getters: {
