@@ -79,7 +79,6 @@ const createStore = () => {
                     returnSecureToken: true
                 })
                 .then(result => {
-                    console.log(result)
                     vueContext.commit('setToken', result.data.idToken)
                     localStorage.setItem('token', result.data.idToken)
                     localStorage.setItem('tokenExpiration', new Date().getTime() + result.data.expiresIn)
