@@ -61,7 +61,7 @@ const createStore = () => {
                     .then(res => {
                         vueContext.commit('editPost', editedPost)
                     })
-                    .catch(e => {console.log(e)}
+                     .catch(e => {console.log(e)}
                 )
             },
             setPosts(vuexContext, posts) {
@@ -81,6 +81,8 @@ const createStore = () => {
                 .then(result => {
                     console.log(result)
                     vueContext.commit('setToken', result.data.idToken)
+                    localStorage.setItem('token', result.data.idToken)
+                    localStorage.setItem('tokenExpiration', new Date().getTime() + result.data.expiresIn)
                     vueContext.dispatch('setLogoutTimer', result.data.expiresIn * 1000)
                 })
                 .catch(error => console.log(error))
@@ -89,6 +91,16 @@ const createStore = () => {
                 setTimeout(() => {
                     vuexContext.commit('clearToken')
                 }, duration)
+            },
+
+            initAuth(vueContext) {
+                const token = localStorage.getItem('token')
+                const expirationDate = localStorage.getItem('tokenExpiration')
+
+                if (new Date() > expirationDate || !token) {
+                    return
+                }
+                vueContext.commit('setToken', token)
             }
         },
         getters: {
