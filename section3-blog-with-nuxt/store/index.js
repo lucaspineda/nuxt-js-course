@@ -96,9 +96,10 @@ const createStore = () => {
                 const token = localStorage.getItem('token')
                 const expirationDate = localStorage.getItem('tokenExpiration')
 
-                if (new Date() > expirationDate || !token) {
+                if (new Date().getTime() > +expirationDate || !token) {
                     return
                 }
+                vueContext.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
                 vueContext.commit('setToken', token)
             }
         },
