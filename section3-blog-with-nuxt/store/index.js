@@ -107,8 +107,23 @@ const createStore = () => {
                 }, duration)
             },
 
-            initAuth(vueContext, isServer) {
-                if (isServer) {
+            initAuth(vueContext, req) {
+                if (req) {
+                    if(!req.header.cookies) {
+                        return
+                    }
+                    const jwtCookie = req.headers.cookie
+                    .split(';')
+                    .find( c => c.trim().startsWith('jwt='))
+                    if(!jwtCookie) {
+                        return
+                    }
+                    const token = jwtCookie.split('=')[1]
+
+                    const expirationDate = req.headers.cookie
+                    .split(';')
+                    .find( c => c.trim().startsWith('expirationDate='))
+                    .split('=')[1]
 
                 } else {
                     const token = localStorage.getItem('token')
@@ -117,9 +132,9 @@ const createStore = () => {
                     if (new Date().getTime() > +expirationDate || !token) {
                         return
                     }
-                    vueContext.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
-                    vueContext.commit('setToken', token)
                 }
+                vueContext.dispatch('setLogoutTimer', +expirationDate - new Date().getTime())
+                vueContext.commit('setToken', token)
             }
         },
         getters: {
