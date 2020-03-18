@@ -90,10 +90,10 @@ const createStore = () => {
                         new Date().getTime() + result.data.expiresIn * 1000
                     )
 
-                    Cookies.set('jwt',
+                    Cookie.set('jwt',
                         result.data.idToken
                     )
-                    Cookies.set('expirationDate',
+                    Cookie.set('expirationDate',
                         new Date().getTime() + result.data.expiresIn * 1000
                     )
 
@@ -108,8 +108,10 @@ const createStore = () => {
             },
 
             initAuth(vueContext, req) {
+                let token;
+                let expirationDate;
                 if (req) {
-                    if(!req.header.cookies) {
+                    if(!req.headers.cookie) {
                         return
                     }
                     const jwtCookie = req.headers.cookie
@@ -118,16 +120,16 @@ const createStore = () => {
                     if(!jwtCookie) {
                         return
                     }
-                    const token = jwtCookie.split('=')[1]
-
-                    const expirationDate = req.headers.cookie
+                    token = jwtCookie.split('=')[1]
+                    
+                    expirationDate = req.headers.cookie
                     .split(';')
                     .find( c => c.trim().startsWith('expirationDate='))
                     .split('=')[1]
 
                 } else {
-                    const token = localStorage.getItem('token')
-                    const expirationDate = localStorage.getItem('tokenExpiration')
+                    token = localStorage.getItem('token')
+                    expirationDate = localStorage.getItem('tokenExpiration')
     
                     if (new Date().getTime() > +expirationDate || !token) {
                         return
