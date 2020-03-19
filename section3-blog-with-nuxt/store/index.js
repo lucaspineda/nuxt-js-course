@@ -127,10 +127,17 @@ const createStore = () => {
                 }
 
                 if (new Date().getTime() > +expirationDate || !token) {
-                    vuexContext.commit('clearToken')
+                    vuexContext.dispatch('logoutUser')
                     return
                 }
                 vuexContext.commit('setToken', token)
+            },
+            logoutUser(vuexContext) {
+                vuexContext.commit('clearToken')
+                Cookie.remove('expirationDate')
+                Cookie.remove('jwt')
+                localStorage.removeItem('token')
+                localStorage.removeItem('expirationDate')
             }
         },
         getters: {
