@@ -96,7 +96,9 @@ const createStore = () => {
                     Cookie.set('expirationDate',
                         new Date().getTime() + +result.data.expiresIn * 1000
                     )
-
+                    return axios.post('http://localhost:3005/api/track-data' , {
+                        data: 'authenticated!'
+                    })
                 })
                 .catch(error => console.log(error))
             },
